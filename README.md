@@ -1,5 +1,9 @@
 # ATS Friendly Cover Letter Generator
 
+## Day 14 of 15 Days Challenge
+
+## Live Link - https://coverletter-ai.netlify.app/
+
 A beautiful, retro-styled web application for generating personalized cover letters using AI. Built with React, TypeScript, Firebase Authentication, and featuring a vintage aesthetic.
 
 ## Features
