@@ -1,12 +1,8 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import Login from '../pages/Login';
 
-interface PrivateRouteProps {
-  children: ReactNode;
-}
-
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
+const PrivateRoute = ({ children }) => {
   const { currentUser } = useAuth();
   
   return currentUser ? <>{children}</> : <Login />;

@@ -5,26 +5,13 @@ import CoverLetterForm from './components/CoverLetterForm';
 import CoverLetterPreview from './components/CoverLetterPreview';
 import { generateCoverLetter } from './services/openaiService';
 
-interface FormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  linkedin: string;
-  portfolio: string;
-  companyName: string;
-  positionName: string;
-  jobDescription: string;
-  tone: string;
-  additionalDetails: string;
-}
-
 function App() {
-  const [currentView, setCurrentView] = useState<'form' | 'preview'>('form');
+  const [currentView, setCurrentView] = useState('form');
   const [letterContent, setLetterContent] = useState('');
   const [applicantName, setApplicantName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleFormSubmit = async (data: FormData) => {
+  const handleFormSubmit = async (data) => {
     setLoading(true);
     try {
       const letter = await generateCoverLetter(data);

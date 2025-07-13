@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import { Copy, RotateCcw, Check, Download } from 'lucide-react';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
-interface CoverLetterPreviewProps {
-  letterContent: string;
-  applicantName: string;
-  onNewLetter: () => void;
-}
-
-const CoverLetterPreview: React.FC<CoverLetterPreviewProps> = ({ 
-  letterContent, 
-  applicantName, 
-  onNewLetter 
-}) => {
+const CoverLetterPreview = ({ letterContent, applicantName, onNewLetter }) => {
   const [copied, setCopied] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
@@ -48,7 +37,7 @@ const CoverLetterPreview: React.FC<CoverLetterPreviewProps> = ({
       const lines = letterContent.split('\n');
       let yPosition = margin;
       
-      lines.forEach((line, index) => {
+      lines.forEach((line) => {
         // Check if we need a new page
         if (yPosition > pageHeight - margin) {
           pdf.addPage();
@@ -62,7 +51,7 @@ const CoverLetterPreview: React.FC<CoverLetterPreviewProps> = ({
           // Split long lines to fit within margins
           const wrappedLines = pdf.splitTextToSize(line, contentWidth);
           
-          wrappedLines.forEach((wrappedLine: string) => {
+          wrappedLines.forEach((wrappedLine) => {
             // Check again for page break
             if (yPosition > pageHeight - margin) {
               pdf.addPage();
