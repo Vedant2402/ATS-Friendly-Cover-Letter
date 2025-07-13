@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Mail, Lock, Chrome, FileText } from 'lucide-react';
 
-const Login = () => {
+const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,7 +10,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const { login, signup, loginWithGoogle } = useAuth();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
@@ -22,7 +22,7 @@ const Login = () => {
       } else {
         await signup(email, password);
       }
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
     
@@ -34,7 +34,7 @@ const Login = () => {
       setError('');
       setLoading(true);
       await loginWithGoogle();
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
     setLoading(false);

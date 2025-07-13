@@ -2,9 +2,27 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { User, Mail, Phone, Linkedin, Globe, Building, Briefcase, MessageSquare, LogOut } from 'lucide-react';
 
-const CoverLetterForm = ({ onSubmit, loading }) => {
+interface FormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  linkedin: string;
+  portfolio: string;
+  companyName: string;
+  positionName: string;
+  jobDescription: string;
+  tone: string;
+  additionalDetails: string;
+}
+
+interface CoverLetterFormProps {
+  onSubmit: (data: FormData) => void;
+  loading: boolean;
+}
+
+const CoverLetterForm: React.FC<CoverLetterFormProps> = ({ onSubmit, loading }) => {
   const { currentUser, logout } = useAuth();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: currentUser?.email || '',
     phone: '',
@@ -14,16 +32,15 @@ const CoverLetterForm = ({ onSubmit, loading }) => {
     positionName: '',
     jobDescription: '',
     tone: 'Professional',
-    additionalDetails: '',
-    wordLimit: 300
+    additionalDetails: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -230,26 +247,6 @@ const CoverLetterForm = ({ onSubmit, loading }) => {
                 </select>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-amber-800 mb-2">
-                  Word Limit
-                </label>
-                <select
-                  name="wordLimit"
-                  value={formData.wordLimit}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-amber-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-white/70 transition-all duration-200"
-                >
-                  <option value={150}>Short (150 words)</option>
-                  <option value={250}>Medium (250 words)</option>
-                  <option value={300}>Standard (300 words)</option>
-                  <option value={400}>Long (400 words)</option>
-                  <option value={500}>Extended (500 words)</option>
-                </select>
-                <p className="text-sm text-amber-600 mt-1">
-                  Choose the approximate length for your cover letter
-                </p>
-              </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-amber-800 mb-2">
                   Additional Details
