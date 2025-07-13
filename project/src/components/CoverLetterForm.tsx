@@ -54,7 +54,7 @@ const CoverLetterForm: React.FC<CoverLetterFormProps> = ({ onSubmit, loading }) 
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold text-amber-900" style={{ fontFamily: 'serif' }}>
-              RetroLetter Generator
+              ATS Friendly Cover Letter
             </h1>
             <p className="text-amber-700 mt-2">
               Create your perfect cover letter with vintage style
