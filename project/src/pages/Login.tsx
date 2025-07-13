@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Mail, Lock, Chrome, FileText } from 'lucide-react';
+import { Mail, Lock, Chrome, FileText, Globe, Github, Linkedin } from 'lucide-react';
 
 const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -12,11 +12,9 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     try {
       setError('');
       setLoading(true);
-      
       if (isLogin) {
         await login(email, password);
       } else {
@@ -25,7 +23,6 @@ const Login: React.FC = () => {
     } catch (error: any) {
       setError(error.message);
     }
-    
     setLoading(false);
   };
 
@@ -49,7 +46,7 @@ const Login: React.FC = () => {
             <FileText className="w-8 h-8 text-amber-800" />
           </div>
           <h1 className="text-4xl font-bold text-amber-900 mb-2" style={{ fontFamily: 'serif' }}>
-            RetroLetter
+            ATS Friendly Cover Letter
           </h1>
           <p className="text-amber-700 text-lg">
             Craft beautiful cover letters with vintage charm
@@ -124,16 +121,6 @@ const Login: React.FC = () => {
                 <span className="px-4 bg-white/80 text-amber-700">or continue with</span>
               </div>
             </div>
-
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              disabled={loading}
-              className="w-full bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-4 rounded-lg border border-gray-300 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-md flex items-center justify-center space-x-2"
-            >
-              <Chrome className="w-5 h-5" />
-              <span>Google</span>
-            </button>
           </form>
 
           <div className="mt-6 text-center">
@@ -151,9 +138,42 @@ const Login: React.FC = () => {
 
         <div className="text-center mt-8">
           <p className="text-amber-600 text-sm">
-            🎨 Designed with retro love for modern professionals
+            🎨 Designed with retro love for modern professionals by Vedant Kankate
           </p>
         </div>
+
+        {/* Footer */}
+        <footer className="mt-6 text-center text-sm text-amber-700 space-y-2">
+          <div className="flex justify-center space-x-6">
+            <a
+              href="https://vedant-kankate.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-amber-900 transition-colors flex items-center space-x-1"
+            >
+              <Globe className="w-4 h-4" />
+              <span>Portfolio</span>
+            </a>
+            <a
+              href="https://github.com/vedant2402"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-amber-900 transition-colors flex items-center space-x-1"
+            >
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vedant-kankate/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-amber-900 transition-colors flex items-center space-x-1"
+            >
+              <Linkedin className="w-4 h-4" />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </footer>
       </div>
     </div>
   );
