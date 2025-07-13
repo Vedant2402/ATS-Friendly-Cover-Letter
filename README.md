@@ -7,7 +7,7 @@ A beautiful, retro-styled web application for generating personalized cover lett
 ### 🔐 Authentication
 
 - Email/password authentication
-- Google sign-in integration
+- Google Sign-in/Sign-Up integration
 - Secure Firebase authentication
 
 ### 📝 Cover Letter Generation
